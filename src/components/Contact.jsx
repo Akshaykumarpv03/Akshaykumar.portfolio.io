@@ -43,7 +43,7 @@ export default function Contact() {
                     className="relative p-[1px] rounded-2xl bg-gradient-to-br from-purple-500/25 via-transparent to-blue-500/25 max-w-2xl mx-auto"
                 >
                     <div className="glass-card p-8 md:p-12 rounded-2xl">
-                        <form action="mailto:akshaykumarpv0987@gmail.com" className="flex flex-col gap-5">
+                        <form onSubmit={(e) => { e.preventDefault(); window.location.href = 'mailto:akshaykumarpv0987@gmail.com'; }} className="flex flex-col gap-5">
                             {fields.map((field, i) => (
                                 <motion.div
                                     key={field.id}
