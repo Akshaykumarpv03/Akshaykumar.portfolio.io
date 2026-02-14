@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Scene3D from './Scene3D'
+import dpImage from '/dp.jpeg?url'
 
 const roles = ['Developer', 'Coder', 'Creator', 'Builder', 'Designer']
 
@@ -45,7 +46,7 @@ export default function Hero() {
                         <div className="absolute -inset-1.5 bg-gradient-to-br from-purple-500 via-violet-500 to-blue-500 rounded-full opacity-60 blur-lg group-hover:opacity-80 transition-opacity duration-500 animate-pulse-glow" />
                         <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full p-[3px] bg-gradient-to-br from-purple-500 via-violet-500 to-blue-500">
                             <img
-                                src={`${import.meta.env.BASE_URL}dp.jpeg`}
+                                src={dpImage}
                                 alt="Akshay Kumar"
                                 className="w-full h-full rounded-full object-cover border-[3px] dark:border-[#050508] border-[#f8f9fc]"
                             />
