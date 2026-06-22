@@ -3,35 +3,20 @@ import { motion } from 'framer-motion'
 export default function Skills() {
     const skillGroups = [
         {
-            title: 'Frontend',
+            title: 'Frontend Development',
             icon: 'code',
-            skills: ['HTML5', 'CSS3', 'JavaScript'],
+            skills: ['HTML5', 'CSS3', 'JavaScript', 'React'],
         },
         {
-            title: 'Backend',
+            title: 'Backend & Database',
             icon: 'dns',
-            skills: ['PHP', 'MySQL', 'Node.js'],
+            skills: ['Python', 'Node.js', 'PHP', 'MySQL'],
         },
         {
-            title: 'Languages',
-            icon: 'terminal',
-            skills: ['Python', 'Java', 'C'],
-        },
-        {
-            title: 'Tools',
+            title: 'Tools & Learning',
             icon: 'build',
-            skills: ['Git', 'VS Code', 'Figma'],
-        },
-        {
-            title: 'Frameworks',
-            icon: 'widgets',
-            skills: ['React', 'Tailwind CSS'],
-        },
-        {
-            title: 'Learning',
-            icon: 'school',
-            skills: ['AI/ML', 'Data Science'],
-        },
+            skills: ['Git', 'VS Code', 'AI/ML'],
+        }
     ]
 
     return (
@@ -45,11 +30,11 @@ export default function Skills() {
             >
                 <span className="section-tag mb-4">Tech Stack</span>
                 <h2 className="text-[36px] md:text-[48px] leading-[1.1] tracking-[-0.02em] font-[600] text-on-surface mt-4 mb-4">
-                    Technologies and tools I work with
+                    Core Technologies
                 </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {skillGroups.map((group, i) => (
                     <motion.div
                         key={group.title}
