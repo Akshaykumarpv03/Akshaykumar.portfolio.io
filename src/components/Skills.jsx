@@ -54,17 +54,13 @@ export default function Skills() {
                             {group.title}
                         </h3>
                         
-                        <div className="flex flex-wrap gap-2 mb-6 flex-grow">
+                        <div className="flex flex-wrap gap-2 flex-grow">
                             {group.skills.map(skill => (
                                 <span key={skill} className="text-xs px-3 py-1 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant font-medium">
                                     {skill}
                                 </span>
                             ))}
                         </div>
-                        
-                        <a href="#projects" className="text-sm font-medium text-on-surface hover:text-primary inline-flex items-center transition-colors">
-                            View projects <span className="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
-                        </a>
                     </motion.div>
                 ))}
             </div>
