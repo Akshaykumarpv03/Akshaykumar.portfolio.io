@@ -1,55 +1,88 @@
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
-
-const socials = [
-    { href: 'https://www.linkedin.com/in/akshay-kumar-ims/', icon: 'fab fa-linkedin-in', label: 'LinkedIn', hoverBg: '#0274b3' },
-    { href: 'https://github.com/Akshaykumarpv03', icon: 'fab fa-github', label: 'GitHub', hoverBg: '#6e5494' },
-    { href: 'https://www.instagram.com/akshay__ims', icon: 'fab fa-instagram', label: 'Instagram', hoverBg: '#c135b4' },
-]
-
 export default function Footer() {
-    const ref = useRef(null)
-    const inView = useInView(ref, { once: true })
-
     return (
-        <footer ref={ref} className="py-16 text-center relative">
-            <div className="max-w-5xl mx-auto px-6">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6 }}
-                    className="flex justify-center gap-5 mb-10"
-                >
-                    {socials.map(s => (
-                        <motion.a
-                            key={s.label}
-                            href={s.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            whileHover={{ y: -5, scale: 1.05 }}
-                            className="w-14 h-14 rounded-full flex items-center justify-center glass-card dark:text-white/50 text-gray-400 text-xl transition-all duration-300 hover:text-white"
-                            onMouseEnter={e => { e.currentTarget.style.background = s.hoverBg; e.currentTarget.style.borderColor = s.hoverBg; e.currentTarget.style.boxShadow = `0 8px 28px ${s.hoverBg}55` }}
-                            onMouseLeave={e => { e.currentTarget.style.background = ''; e.currentTarget.style.borderColor = ''; e.currentTarget.style.boxShadow = '' }}
-                            aria-label={s.label}
-                        >
-                            <i className={s.icon} />
-                        </motion.a>
-                    ))}
-                </motion.div>
+        <footer className="border-t border-surface-variant bg-surface-bright pt-24 pb-12">
+            {/* Top CTA */}
+            <div className="max-w-[1280px] mx-auto px-6 mb-20 text-center">
+                <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-on-surface mb-8">
+                    Let's work together
+                </h2>
+                <a href="#contact" className="btn-primary text-lg px-8 py-4">
+                    Get in Touch
+                </a>
+            </div>
 
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={inView ? { opacity: 1 } : {}}
-                    transition={{ delay: 0.2 }}
-                >
-                    <div className="w-16 h-[2px] bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mb-6 rounded-full" />
-                    <p className="dark:text-white/30 text-gray-400 text-base">
-                        &copy; 2025 <span className="gradient-text font-semibold">Akshay Kumar P V</span>. All rights reserved.
+            {/* Links Columns */}
+            <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-12 mb-16">
+                {/* Brand Column */}
+                <div className="col-span-2 md:col-span-4 lg:col-span-2">
+                    <div className="text-2xl font-bold tracking-tighter text-on-surface mb-6">
+                        Akshay Kumar
+                    </div>
+                    <p className="text-sm text-on-surface-variant mb-6 pr-4">
+                        Developer • AI Enthusiast • Creator
                     </p>
-                    <p className="dark:text-white/20 text-gray-300 text-sm mt-3 tracking-wider">
-                        Built with React, Three.js & Framer Motion
-                    </p>
-                </motion.div>
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor="email-subscribe" className="text-xs font-medium text-on-surface">Subscribe to updates</label>
+                        <div className="flex">
+                            <input 
+                                id="email-subscribe" 
+                                type="email" 
+                                placeholder="Email address"
+                                className="bg-surface-container border border-outline-variant text-on-surface text-sm rounded-l-md px-3 py-2 w-full focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+                            />
+                            <button className="bg-primary text-on-primary px-4 py-2 rounded-r-md text-sm font-medium hover:opacity-90 transition-opacity">
+                                Join
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Navigation Column */}
+                <div>
+                    <h4 className="text-xs font-medium text-on-surface uppercase tracking-wider mb-4">Navigation</h4>
+                    <ul className="space-y-3 text-xs text-on-surface-variant">
+                        <li><a href="#home" className="hover:text-on-surface transition-colors">Home</a></li>
+                        <li><a href="#about" className="hover:text-on-surface transition-colors">About</a></li>
+                        <li><a href="#skills" className="hover:text-on-surface transition-colors">Skills</a></li>
+                        <li><a href="#projects" className="hover:text-on-surface transition-colors">Projects</a></li>
+                        <li><a href="#experience" className="hover:text-on-surface transition-colors">Experience</a></li>
+                        <li><a href="#contact" className="hover:text-on-surface transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                {/* Social Column */}
+                <div>
+                    <h4 className="text-xs font-medium text-on-surface uppercase tracking-wider mb-4">Social</h4>
+                    <ul className="space-y-3 text-xs text-on-surface-variant">
+                        <li><a href="https://www.linkedin.com/in/akshay-kumar-ims/" target="_blank" rel="noopener noreferrer" className="hover:text-on-surface transition-colors">LinkedIn</a></li>
+                        <li><a href="https://github.com/Akshaykumarpv03" target="_blank" rel="noopener noreferrer" className="hover:text-on-surface transition-colors">GitHub</a></li>
+                        <li><a href="https://www.instagram.com/akshay__ims" target="_blank" rel="noopener noreferrer" className="hover:text-on-surface transition-colors">Instagram</a></li>
+                    </ul>
+                </div>
+
+                {/* Contact Column */}
+                <div className="col-span-2 md:col-span-1 lg:col-span-2">
+                    <h4 className="text-xs font-medium text-on-surface uppercase tracking-wider mb-4">Contact</h4>
+                    <ul className="space-y-3 text-xs text-on-surface-variant">
+                        <li><a href="mailto:akshaykumarpv0987@gmail.com" className="hover:text-on-surface transition-colors">akshaykumarpv0987@gmail.com</a></li>
+                        <li className="pt-2">Kerala, India</li>
+                    </ul>
+                </div>
+            </div>
+
+            {/* Bottom Bar */}
+            <div className="max-w-[1280px] mx-auto px-6 pt-8 border-t border-surface-variant flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <div className="text-xs text-outline">
+                    © 2025 Akshay Kumar P V. All rights reserved.
+                </div>
+                <div className="flex space-x-4 text-outline">
+                    <a href="https://www.linkedin.com/in/akshay-kumar-ims/" target="_blank" rel="noopener noreferrer" className="hover:text-on-surface transition-colors" aria-label="LinkedIn">
+                        <span className="text-sm font-bold">in</span>
+                    </a>
+                    <a href="https://github.com/Akshaykumarpv03" target="_blank" rel="noopener noreferrer" className="hover:text-on-surface transition-colors" aria-label="GitHub">
+                        <span className="material-symbols-outlined text-[20px]">code</span>
+                    </a>
+                </div>
             </div>
         </footer>
     )

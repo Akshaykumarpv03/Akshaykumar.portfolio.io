@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import Scene3D from './Scene3D'
 import dpImage from '/dp.jpeg?url'
 
 const roles = ['Developer', 'Coder', 'Creator', 'Builder', 'Designer']
@@ -27,114 +26,132 @@ export default function Hero() {
     }, [displayed, isDeleting, roleIndex])
 
     return (
-        <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-            <Scene3D />
+        <section id="home" className="max-w-[1280px] mx-auto px-6 flex flex-col items-center text-center mt-12 mb-[150px]">
+            {/* Announcement Badge */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="inline-flex items-center space-x-2 bg-surface-container-high px-4 py-2 rounded-full mb-8 border border-outline-variant"
+            >
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span className="text-sm font-medium text-on-surface">Open to Opportunities</span>
+            </motion.div>
 
-            {/* Ambient */}
-            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-purple-500/[0.04] rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-500/[0.03] rounded-full blur-[100px] pointer-events-none" />
+            {/* Profile Photo */}
+            <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="mb-8 relative"
+            >
+                <div className="w-32 h-32 rounded-full overflow-hidden border border-outline-variant p-1 bg-surface-container-lowest shadow-sm">
+                    <img src={dpImage} alt="Akshay Kumar" className="w-full h-full object-cover rounded-full" />
+                </div>
+            </motion.div>
 
-            <div className="relative z-10 w-full max-w-5xl mx-auto px-6 flex flex-col items-center text-center py-32">
-                {/* Photo */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, type: 'spring', stiffness: 80 }}
-                    className="mb-10"
-                >
-                    <div className="relative group">
-                        <div className="absolute -inset-1.5 bg-gradient-to-br from-purple-500 via-violet-500 to-blue-500 rounded-full opacity-60 blur-lg group-hover:opacity-80 transition-opacity duration-500 animate-pulse-glow" />
-                        <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full p-[3px] bg-gradient-to-br from-purple-500 via-violet-500 to-blue-500">
-                            <img
-                                src={dpImage}
-                                alt="Akshay Kumar"
-                                className="w-full h-full rounded-full object-cover border-[3px] dark:border-[#050508] border-[#f8f9fc]"
-                            />
+            {/* Main Headline */}
+            <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-[48px] md:text-[84px] leading-[1.1] md:leading-[0.95] tracking-[-0.04em] font-[600] text-on-surface max-w-[900px] mb-6"
+            >
+                Akshay Kumar
+            </motion.h1>
+
+            {/* Subtitle with Typewriter */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex items-center justify-center space-x-2 mb-6 text-on-surface-variant text-lg md:text-xl font-medium"
+            >
+                <span className="min-w-[100px] text-right">{displayed}</span>
+                <span className="animate-[blink_0.8s_steps(1)_infinite]">|</span>
+                <span>•</span>
+                <span>AI Enthusiast</span>
+                <span>•</span>
+                <span>Creator</span>
+            </motion.div>
+
+            {/* Description */}
+            <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="font-body text-on-surface-variant max-w-[620px] mb-12"
+            >
+                Turning ideas into clean, functional code. Passionate about building futuristic digital experiences.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-24 w-full sm:w-auto"
+            >
+                <a href="#projects" className="btn-primary w-full sm:w-auto">
+                    View Projects
+                </a>
+                <a href="/Akshaykumar.portfolio.io/Akshay_Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary w-full sm:w-auto">
+                    Download Resume
+                </a>
+            </motion.div>
+
+            {/* Demo Showcase Card */}
+            <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="w-full max-w-[1024px] bg-surface-container-lowest border border-outline-variant rounded-[24px] p-2 shadow-sm"
+            >
+                <div className="bg-surface-container-low rounded-xl overflow-hidden border border-outline-variant/50 relative aspect-[16/9] flex items-center justify-center">
+                    {/* Abstract background representation */}
+                    <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, var(--color-outline-variant) 1px, transparent 0)', backgroundSize: '24px 24px' }}></div>
+                    
+                    <div className="z-10 w-full max-w-3xl p-6 bg-surface-container-lowest/90 backdrop-blur-md border border-outline-variant rounded-xl shadow-sm text-left">
+                         <div className="flex space-x-2 mb-4">
+                            <div className="w-3 h-3 rounded-full bg-outline-variant"></div>
+                            <div className="w-3 h-3 rounded-full bg-outline-variant"></div>
+                            <div className="w-3 h-3 rounded-full bg-outline-variant"></div>
+                        </div>
+                        <pre className="font-mono text-sm text-on-surface-variant whitespace-pre-wrap">
+                            <code>
+<span className="text-secondary">class</span> <span className="font-semibold text-on-surface">Developer</span>:
+    <span className="text-secondary">def</span> <span className="font-semibold text-on-surface">__init__</span>(self):
+        self.name = <span className="text-outline">"Akshay Kumar"</span>
+        self.skills = [<span className="text-outline">"React"</span>, <span className="text-outline">"Python"</span>, <span className="text-outline">"AI/ML"</span>]
+        self.passion = <span className="text-outline">"Building the future"</span>
+
+    <span className="text-secondary">def</span> <span className="font-semibold text-on-surface">build_experience</span>(self):
+        <span className="text-secondary">return</span> <span className="text-outline">"Clean code & scalable architecture"</span>
+                            </code>
+                        </pre>
+                        
+                        <div className="mt-8 border-t border-surface-variant pt-4 flex items-center justify-between">
+                            <div className="flex items-center space-x-4">
+                                <button className="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity">
+                                    <span className="material-symbols-outlined filled-icon">play_arrow</span>
+                                </button>
+                                <div>
+                                    <div className="text-sm font-medium text-on-surface">Code Execution</div>
+                                    <div class="text-xs text-on-surface-variant">Runtime: Python 3.12</div>
+                                </div>
+                            </div>
+                            <div className="flex space-x-1">
+                                <div className="w-1 h-6 bg-primary rounded-full animate-pulse"></div>
+                                <div className="w-1 h-8 bg-primary rounded-full animate-pulse" style={{ animationDelay: '75ms' }}></div>
+                                <div className="w-1 h-4 bg-primary rounded-full animate-pulse" style={{ animationDelay: '150ms' }}></div>
+                                <div className="w-1 h-7 bg-primary rounded-full animate-pulse" style={{ animationDelay: '200ms' }}></div>
+                                <div className="w-1 h-5 bg-outline rounded-full"></div>
+                                <div className="w-1 h-3 bg-outline rounded-full"></div>
+                                <div className="w-1 h-2 bg-outline rounded-full"></div>
+                            </div>
                         </div>
                     </div>
-                </motion.div>
-
-                {/* Greeting */}
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="text-purple-400 font-semibold tracking-[4px] uppercase text-base mb-4"
-                >
-                    Hello, I'm
-                </motion.p>
-
-                {/* Name */}
-                <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.7 }}
-                    className="font-[var(--font-display)] text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] mb-5 gradient-text-animated"
-                >
-                    Akshay Kumar
-                </motion.h1>
-
-                {/* Typewriter */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6 }}
-                    className="text-2xl md:text-3xl font-medium dark:text-white/35 text-gray-400 mb-5 h-12 flex items-center justify-center gap-2"
-                >
-                    <span>A</span>
-                    <span className="text-cyan-400 font-semibold min-w-[140px] text-left">{displayed}</span>
-                    <span className="text-purple-400 animate-[blink_0.8s_steps(1)_infinite]">|</span>
-                </motion.div>
-
-                {/* Tagline */}
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.8 }}
-                    className="dark:text-white/40 text-gray-500 text-lg md:text-xl max-w-xl mb-12 leading-relaxed"
-                >
-                    Turning ideas into clean, functional code. Passionate about building futuristic digital experiences.
-                </motion.p>
-
-                {/* CTAs */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1 }}
-                    className="flex gap-5 flex-wrap justify-center"
-                >
-                    <a
-                        href="#projects"
-                        className="px-9 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold text-base rounded-xl shadow-[0_6px_25px_rgba(168,85,247,0.3)] hover:shadow-[0_10px_40px_rgba(168,85,247,0.45)] hover:-translate-y-1 transition-all duration-300"
-                    >
-                        <span className="flex items-center gap-3">
-                            <i className="fas fa-layer-group text-lg" />
-                            View Projects
-                        </span>
-                    </a>
-                    <a
-                        href="#contact"
-                        className="px-9 py-4 border-2 border-purple-500/25 dark:text-white/80 text-gray-700 font-semibold text-base rounded-xl hover:bg-purple-500/[0.06] hover:border-purple-500/40 hover:-translate-y-1 transition-all duration-300"
-                    >
-                        <span className="flex items-center gap-3">
-                            <i className="fas fa-paper-plane text-lg" />
-                            Contact Me
-                        </span>
-                    </a>
-                </motion.div>
-            </div>
-
-            {/* Scroll */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.3 }}
-                transition={{ delay: 1.5 }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
-            >
-                <div className="w-6 h-10 border-2 border-purple-500/25 rounded-full flex justify-center pt-2">
-                    <div className="w-1 h-2.5 bg-purple-500 rounded-full animate-[scroll-bounce_1.8s_ease-in-out_infinite]" />
                 </div>
-                <span className="text-xs dark:text-white/20 text-gray-400 tracking-[3px] uppercase">Scroll</span>
             </motion.div>
         </section>
     )

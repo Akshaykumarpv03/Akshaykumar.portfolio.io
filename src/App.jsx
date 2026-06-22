@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { ThemeProvider } from './context/ThemeContext'
 import LoadingScreen from './components/LoadingScreen'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -19,13 +18,13 @@ function App() {
   }, [])
 
   return (
-    <ThemeProvider>
+    <>
       {loading ? (
         <LoadingScreen />
       ) : (
         <>
           <Navbar />
-          <main>
+          <main className="pt-20">
             <Hero />
             <About />
             <Skills />
@@ -36,7 +35,7 @@ function App() {
           <Footer />
         </>
       )}
-    </ThemeProvider>
+    </>
   )
 }
 

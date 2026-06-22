@@ -1,97 +1,123 @@
-import { motion, useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 export default function Contact() {
-    const ref = useRef(null)
-    const inView = useInView(ref, { once: true, margin: '-80px' })
-    const [focused, setFocused] = useState('')
-
     const fields = [
-        { id: 'name', icon: 'fas fa-user', type: 'text', placeholder: 'Your Name' },
-        { id: 'email', icon: 'fas fa-at', type: 'email', placeholder: 'Your Email' },
-        { id: 'subject', icon: 'fas fa-tag', type: 'text', placeholder: 'Subject' },
+        { id: 'name', type: 'text', label: 'Name', placeholder: 'Your name' },
+        { id: 'email', type: 'email', label: 'Email', placeholder: 'your@email.com' },
+        { id: 'subject', type: 'text', label: 'Subject', placeholder: 'How can I help you?' },
     ]
 
-    const fieldBase = 'dark:bg-white/[0.02] bg-black/[0.02] dark:border-white/[0.05] border-black/[0.08]'
-    const fieldFocus = 'dark:bg-purple-500/[0.03] bg-purple-500/[0.04] border-purple-500/40 shadow-[0_0_0_3px_rgba(168,85,247,0.06)]'
-
     return (
-        <section id="contact" className="relative py-28 md:py-36">
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple-500/[0.03] rounded-full blur-[140px] pointer-events-none" />
+        <section id="contact" className="max-w-[1280px] mx-auto px-6 mb-[150px]">
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
+                transition={{ duration: 0.6 }}
+                className="text-center mb-16"
+            >
+                <span className="section-tag mb-4">Get In Touch</span>
+                <h2 className="text-[36px] md:text-[48px] leading-[1.1] tracking-[-0.02em] font-[600] text-on-surface mt-4">
+                    Contact Me
+                </h2>
+            </motion.div>
 
-            <div ref={ref} className="max-w-5xl mx-auto px-6">
-                {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.7 }}
-                    className="text-center mb-16"
-                >
-                    <span className="section-tag mb-4 inline-flex">
-                        <i className="fas fa-envelope" /> Get In Touch
-                    </span>
-                    <h2 className="font-[var(--font-display)] text-4xl md:text-5xl font-bold tracking-tight mt-4 dark:text-white text-gray-900">
-                        Contact Me
-                    </h2>
-                </motion.div>
-
-                {/* Form */}
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.7, delay: 0.15 }}
-                    className="relative p-[1px] rounded-2xl bg-gradient-to-br from-purple-500/25 via-transparent to-blue-500/25 max-w-2xl mx-auto"
-                >
-                    <div className="glass-card p-8 md:p-12 rounded-2xl">
-                        <form onSubmit={(e) => { e.preventDefault(); window.location.href = 'mailto:akshaykumarpv0987@gmail.com'; }} className="flex flex-col gap-5">
-                            {fields.map((field, i) => (
-                                <motion.div
-                                    key={field.id}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                                    transition={{ delay: 0.3 + i * 0.08 }}
-                                    className={`flex items-center gap-4 px-6 py-4 rounded-xl border transition-all duration-300 ${focused === field.id ? fieldFocus : fieldBase
-                                        }`}
-                                >
-                                    <i className={`${field.icon} text-base transition-colors duration-300 ${focused === field.id ? 'text-purple-400' : 'dark:text-white/20 text-gray-300'
-                                        }`} />
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="max-w-2xl mx-auto"
+            >
+                <div className="clean-card p-8 md:p-12">
+                    <form 
+                        onSubmit={(e) => { 
+                            e.preventDefault(); 
+                            window.location.href = 'mailto:akshaykumarpv0987@gmail.com'; 
+                        }} 
+                        className="flex flex-col gap-6"
+                    >
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {fields.slice(0, 2).map((field) => (
+                                <div key={field.id}>
+                                    <label className="block text-xs font-medium text-on-surface uppercase tracking-wider mb-2">
+                                        {field.label}
+                                    </label>
                                     <input
-                                        required type={field.type} placeholder={field.placeholder}
-                                        className="flex-1 bg-transparent border-none outline-none dark:text-white/90 text-gray-800 text-base font-[var(--font-sans)] dark:placeholder-white/25 placeholder-gray-400"
-                                        onFocus={() => setFocused(field.id)} onBlur={() => setFocused('')}
+                                        required 
+                                        type={field.type} 
+                                        placeholder={field.placeholder}
+                                        className="w-full bg-surface-container border border-outline-variant rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow"
                                     />
-                                </motion.div>
+                                </div>
                             ))}
+                        </div>
 
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={inView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ delay: 0.54 }}
-                                className={`flex items-start gap-4 px-6 py-4 rounded-xl border transition-all duration-300 ${focused === 'message' ? fieldFocus : fieldBase
-                                    }`}
-                            >
-                                <i className={`fas fa-comment-dots text-base mt-1 transition-colors duration-300 ${focused === 'message' ? 'text-purple-400' : 'dark:text-white/20 text-gray-300'
-                                    }`} />
-                                <textarea required placeholder="Your Message" rows={5}
-                                    className="flex-1 bg-transparent border-none outline-none dark:text-white/90 text-gray-800 text-base resize-y font-[var(--font-sans)] leading-relaxed dark:placeholder-white/25 placeholder-gray-400"
-                                    onFocus={() => setFocused('message')} onBlur={() => setFocused('')}
-                                />
-                            </motion.div>
+                        <div>
+                            <label className="block text-xs font-medium text-on-surface uppercase tracking-wider mb-2">
+                                {fields[2].label}
+                            </label>
+                            <input
+                                required 
+                                type={fields[2].type} 
+                                placeholder={fields[2].placeholder}
+                                className="w-full bg-surface-container border border-outline-variant rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow"
+                            />
+                        </div>
 
-                            <motion.button type="submit"
-                                whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={inView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ delay: 0.6 }}
-                                className="w-full mt-3 py-5 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold text-base rounded-xl shadow-[0_6px_25px_rgba(168,85,247,0.3)] hover:shadow-[0_10px_40px_rgba(168,85,247,0.45)] transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer"
-                            >
-                                <span className="text-lg">Send Message</span>
-                                <i className="fas fa-paper-plane text-base" />
-                            </motion.button>
-                        </form>
-                    </div>
-                </motion.div>
-            </div>
+                        <div>
+                            <label className="block text-xs font-medium text-on-surface uppercase tracking-wider mb-2">
+                                Message
+                            </label>
+                            <textarea 
+                                required 
+                                placeholder="Your message..." 
+                                rows={5}
+                                className="w-full bg-surface-container border border-outline-variant rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary resize-none transition-shadow"
+                            />
+                        </div>
+
+                        <button 
+                            type="submit"
+                            className="btn-primary w-full mt-2"
+                        >
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                {/* Social Links */}
+                <div className="flex justify-center gap-4 mt-12">
+                    <a
+                        href="https://www.linkedin.com/in/akshay-kumar-ims/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-container transition-colors"
+                        aria-label="LinkedIn"
+                    >
+                        <span className="text-sm font-bold">in</span>
+                    </a>
+                    <a
+                        href="https://github.com/Akshaykumarpv03"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-container transition-colors"
+                        aria-label="GitHub"
+                    >
+                        <span className="material-symbols-outlined text-[20px]">code</span>
+                    </a>
+                    <a
+                        href="https://www.instagram.com/akshay__ims"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-container transition-colors"
+                        aria-label="Instagram"
+                    >
+                        <span className="material-symbols-outlined text-[20px]">photo_camera</span>
+                    </a>
+                </div>
+            </motion.div>
         </section>
     )
 }
